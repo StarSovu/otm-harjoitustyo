@@ -1,0 +1,9 @@
+Date:   Tue Mar 20 19:19:58 2018 +0200
+
+    initial commit
+
+ README.md | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+
+TEIN SEN KAIKEN JOSSAIN IHAN MUUALLA JA NYT SE KAIKKI TEKEMINEN ON IHAN TURHAA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
