@@ -14,3 +14,4 @@ https://github.com/StarSovu/otm-harjoitustyo/blob/master/laskarit/viikko1/koment
 ## Miksi ei onnistu?
 
 Koska unohdin ottaa läppärin maanantaina yliopistolle, niin siksi EN VOI KOPIOIDA SIELTÄ JUTTUJA.
+Lisäys: Siis tein yliopiston koneella juttuja ja en voi siis kopioida siitä koneesta.
