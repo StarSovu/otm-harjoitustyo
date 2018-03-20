@@ -9,3 +9,8 @@ https://github.com/StarSovu/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog
 https://github.com/StarSovu/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt
 
 ............................
+
+
+## Miksi ei onnistu?
+
+Koska unohdin ottaa läppärin maanantaina yliopistolle, niin siksi EN VOI KOPIOIDA SIELTÄ JUTTUJA.
