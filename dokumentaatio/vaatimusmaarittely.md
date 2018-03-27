@@ -7,6 +7,10 @@ Sovellus on kokoelma erilaisia minipelejä, joista voi saada pisteitä. Pelistä
 Vain tavallisia käyttäjiä. Ei sisäänkirjautumista. Jossakin vaiheessa sovelluukseen kuitenkin saatetaan lisätä toiminnallisuus, jossa käyttäjä voi kirjoittaa nimen, joka näkyy top-listoilla.
 
 ## Perusversion tarjoama toiminnallisuus
+Sovelluksen käynnistyessä näkyy valikko.
+- Valikossa on nappeja, joita painamalla päästään kuhunkin minipeliin.
+- Minipelin päätyttyä palataan valikkoon.
+
 Ruoankeräyspeli
 - Pelissä on aikaraja.
 - Ruutuun ilmestyy ruokia, jotka ovat painettavissa rajoitetun ajan.
@@ -31,5 +35,7 @@ Puolustuspeli
 - Pisteinä kulunut aika.
 
 ## Jatkokehitysideoita
-- Lisää minipelejä, joista jokaisessa on erilaisia toimintoja.
+- Lisää minipelejä ja mahdollisuus päästä niihin valikon kautta.
+- Jo olemassa olevien pelien kehittäminen.
 - Kirjanpito parhaista tuloksista kussakin pelissä, top-listat.
+- Mahdollisuus kirjautua sisään jollakin käyttäjänimellä ja pitää kirjaa henkilökohtaisista parhaista suorituksista.
