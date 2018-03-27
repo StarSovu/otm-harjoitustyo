@@ -2,4 +2,5 @@
 
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
-| 26.3. | ?    | en vielä mitään |
+| 26.3. | 0    | dokumentaatiotiedoston |
+| 27.3. | 2    | valitsin aiheen, vaatimusmäärittelyt |
