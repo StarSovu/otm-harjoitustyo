@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,7 +19,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         // start menu
-        stage.setTitle("Minigames");
         
         Label label = new Label("Select Minigame");
         
@@ -37,24 +37,41 @@ public class Main extends Application {
         Scene mainMenu = new Scene(menu);
         
         // game 1 instructions 
-        VBox game1start = new VBox();
+        VBox game1VBox = new VBox();
         
         Label game1Label = new Label("Choose healthy food, avoid unhealthy");
-        Button back1 = new Button("Back");
-        game1start.getChildren().add(game1Label);
-        game1start.getChildren().add(back1);
         
-        Scene game1Instructions = new Scene(game1start);
+        HBox game1HBox = new HBox();
+        game1HBox.setSpacing(40);
+        Button back1 = new Button("Back");
+        Button start1 = new Button ("Start");
+        game1HBox.getChildren().add(back1);
+        game1HBox.getChildren().add(start1);
+        
+        game1VBox.getChildren().add(game1Label);
+        game1VBox.getChildren().add(game1HBox);
+        
+        Scene game1Instructions = new Scene(game1VBox);
         
         // game 2 instructions 
-        VBox game2start = new VBox();
+        VBox game2VBox = new VBox();
         
         Label game2Label = new Label("Don't let them destroy all walls");
         Button back2 = new Button("Back");
-        game2start.getChildren().add(game2Label);
-        game2start.getChildren().add(back2);
+        game2VBox.getChildren().add(game2Label);
+        game2VBox.getChildren().add(back2);
         
-        Scene game2Instructions = new Scene(game2start);
+        Scene game2Instructions = new Scene(game2VBox);
+        
+        // select the food
+        FoodCollectingScore score = new FoodCollectingScore();
+        
+        Pane foodCollectScreen = new Pane();
+        foodCollectScreen.setPrefSize(480, 360);
+        
+        Scene foodCollection = new Scene(foodCollectScreen);
+        
+        
         
         //changing scenes
         game1.setOnAction((event) -> {
@@ -73,7 +90,12 @@ public class Main extends Application {
             stage.setScene(mainMenu);
         });
         
+        start1.setOnAction((event) -> {
+            stage.setScene(foodCollection);
+        });
+        
         //start
+        stage.setTitle("Minigames");
         stage.setScene(mainMenu);
         stage.show();
     }
