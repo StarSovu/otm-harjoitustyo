@@ -49,4 +49,10 @@ public class FoodCollectingScoreUnitTest {
         score.collectStrawberry();
         assertTrue(score.score() == 1);
     }
+    
+    @Test
+    public void firstChocolateSubtracts1Point() {
+        score.collectChocolate();
+        assertTrue(score.score() == -1);
+    }
 }
