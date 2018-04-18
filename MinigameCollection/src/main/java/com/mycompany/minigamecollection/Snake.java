@@ -25,7 +25,7 @@ public class Snake {
         int snakeDirection = this.direction.ordinal();
         int newDirection = direction.ordinal();
         
-        if (snakeDirection + newDirection == 5) {
+        if (snakeDirection + newDirection != 3) {
             this.direction = direction;
         }
     }

@@ -9,4 +9,5 @@
 | 15.4. | 0    | pientä siistimistä |
 | 16.4. | 0    | yritin päästä alkuun, mutta ei onnistunut |
 | 17.4. | 1    | matopelin, joka ei edes toimi |
-| yht.  | 7    |
+| 19.4. | 1    | jonkin verran korjausta |
+| yht.  | 8    |

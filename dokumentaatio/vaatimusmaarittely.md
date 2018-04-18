@@ -7,9 +7,18 @@ Sovellus on kokoelma erilaisia minipelejä, joista voi saada pisteitä. Pelistä
 Vain tavallisia käyttäjiä. Ei sisäänkirjautumista. Jossakin vaiheessa sovelluukseen kuitenkin saatetaan lisätä toiminnallisuus, jossa käyttäjä voi kirjoittaa nimen, joka näkyy top-listoilla.
 
 ## Perusversion tarjoama toiminnallisuus
+Tämä osio sisältää vanhentunutta tietoa, jota ei tällä hetkellä vielä korjata.
+
 Sovelluksen käynnistyessä näkyy valikko.
 - Valikossa on nappeja, joita painamalla päästään kuhunkin minipeliin.
 - Minipelin päätyttyä palataan valikkoon.
+
+Käärmepeli (uusi versio matopelistä)
+- Ohjataan käärmettä.
+- Käärme kasvaa, kun se syö appelsiinin.
+- Jos käärme osuu itseensä tai seinään, peli on ohi.
+- Käärme ei voi kääntyä vastakkaiseen suuntaan siitä, mihin se on sillä hetkellä menossa.
+- Tavoitteena saada mahdollisimman pitkä käärme.
 
 Ruoankeräyspeli
 - Pelissä on aikaraja.

@@ -11,10 +11,12 @@ public class SnakeGame {
     private SnakeOrange orange;
     private Snake snake;
     private Random random;
+    private SnakeScore score;
     
-    public SnakeGame(int width, int height) {
+    public SnakeGame(int width, int height, SnakeScore score) {
         this.width = width;
         this.height = height;
+        this.score = score;
         
         this.snake = new Snake(width/2, height/2, Direction.DOWN);
         
@@ -34,7 +36,7 @@ public class SnakeGame {
         return this.snake;
     }
     
-    public void setMato(Snake snake) {
+    public void setSnake(Snake snake) {
         this.snake = snake;
     }
     
@@ -55,6 +57,7 @@ public class SnakeGame {
         
         if (this.snake.hits(this.orange)) {
            this.snake.grow();
+           this.score.increaseScore();
            
            while (this.snake.hits(this.orange)) {
                this.orange = new SnakeOrange(random.nextInt(width), random.nextInt(height));

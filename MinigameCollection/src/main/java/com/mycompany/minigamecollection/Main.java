@@ -82,7 +82,27 @@ public class Main extends Application {
         game3HBox.getChildren().add(back3);
         game3HBox.getChildren().add(start3);
         
+        game3VBox.getChildren().add(game3Label);
+        game3VBox.getChildren().add(game3HBox);
+        
         Scene game3Instructions = new Scene(game3VBox);
+        
+        // game 3 end
+        VBox game3EndVBox = new VBox();
+        
+        Label game3EndLabel = new Label("Your score: ");
+        
+        HBox game3EndHBox = new HBox();
+        game3EndHBox.setSpacing(40);
+        Button back3End = new Button("Back");
+        Button start3End = new Button ("Play Again");
+        game3EndHBox.getChildren().add(back3End);
+        game3EndHBox.getChildren().add(start3End);
+        
+        game3EndVBox.getChildren().add(game3EndLabel);
+        game3EndVBox.getChildren().add(game3EndHBox);
+        
+        Scene game3End = new Scene(game3EndVBox);
         
         
         
@@ -97,7 +117,57 @@ public class Main extends Application {
         
         
         //snake
+        SnakeScore snakeScore = new SnakeScore();
         
+        
+        //changing scenes
+        game1.setOnAction((event) -> {
+            stage.setScene(game1Instructions);
+        });
+        
+        game2.setOnAction((event) -> {
+            stage.setScene(game2Instructions);
+        });
+        
+        game3.setOnAction((event) -> {
+            stage.setScene(game3Instructions);
+        });
+        
+        back1.setOnAction((event) -> {
+            stage.setScene(mainMenu);
+        });
+        
+        back2.setOnAction((event) -> {
+            stage.setScene(mainMenu);
+        });
+        
+        back3.setOnAction((event) -> {
+            stage.setScene(mainMenu);
+        });
+        
+        back3End.setOnAction((event) -> {
+            stage.setScene(mainMenu);
+        });
+        
+        start1.setOnAction((event) -> {
+            stage.setScene(foodCollection);
+        });
+        
+        start3.setOnAction((event) -> {
+            snake(stage, game3End, snakeScore);
+        });
+        
+        start3End.setOnAction((event) -> {
+            snake(stage, game3End, snakeScore);
+        });
+        
+        //start
+        stage.setTitle("Minigames");
+        stage.setScene(mainMenu);
+        stage.show();
+    }
+    
+    public void snake(Stage stage, Scene mainMenu, SnakeScore score) {
         Canvas canvas = new Canvas(600, 600);
         GraphicsContext drawer = canvas.getGraphicsContext2D();
         
@@ -105,8 +175,10 @@ public class Main extends Application {
         settingSnake.setCenter(canvas);
 
         Scene snake = new Scene(settingSnake);
+        
+        stage.setScene(snake);
 
-        SnakeGame snakeGame = new SnakeGame(30, 30);
+        SnakeGame snakeGame = new SnakeGame(30, 30, score);
         
         // draws 30 times a second
         new AnimationTimer() {
@@ -114,7 +186,7 @@ public class Main extends Application {
 
             @Override
             public void handle(long presentTime) {
-                if (presentTime - previous < 1_000_000_000 / 30 || !stage.getScene().equals(snake)) {
+                if (presentTime - previous < 1_000_000_000 / 30) {
                     return;
                 }
                 previous = presentTime;
@@ -145,7 +217,7 @@ public class Main extends Application {
 
             @Override
             public void handle(long presentTime) {
-                if (presentTime - previous < 1_000_000_000 / 5 || !stage.getScene().equals(snake)) {
+                if (presentTime - previous < 1_000_000_000 / 5) {
                     return;
                 }
                 previous = presentTime;
@@ -154,6 +226,7 @@ public class Main extends Application {
 
                 if (snakeGame.end()) {
                     stop();
+                    stage.setScene(mainMenu);
                 }
             }
         }.start();
@@ -177,46 +250,6 @@ public class Main extends Application {
                     break;
             }
         });
-        
-        
-        
-        //changing scenes
-        game1.setOnAction((event) -> {
-            stage.setScene(game1Instructions);
-        });
-        
-        game2.setOnAction((event) -> {
-            stage.setScene(game2Instructions);
-        });
-        
-        game3.setOnAction((event) -> {
-            stage.setScene(game3Instructions);
-        });
-        
-        back1.setOnAction((event) -> {
-            stage.setScene(mainMenu);
-        });
-        
-        back2.setOnAction((event) -> {
-            stage.setScene(mainMenu);
-        });
-        
-        back3.setOnAction((event) -> {
-            stage.setScene(mainMenu);
-        });
-        
-        start1.setOnAction((event) -> {
-            stage.setScene(foodCollection);
-        });
-        
-        start3.setOnAction((event) -> {
-            stage.setScene(snake);
-        });
-        
-        //start
-        stage.setTitle("Minigames");
-        stage.setScene(mainMenu);
-        stage.show();
     }
     
     public static void main(String[] args) {
