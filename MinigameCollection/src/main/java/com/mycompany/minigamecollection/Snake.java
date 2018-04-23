@@ -6,14 +6,14 @@ import java.util.List;
 
 
 public class Snake {
-    private List<SnakePiece> snake;
+    private List<Piece> snake;
     private Direction direction;
     private boolean grows;
     
     public Snake(int startX, int startY, Direction startDirection) {
         this.direction = startDirection;
         this.snake = new ArrayList<>();
-        this.snake.add(new SnakePiece(startX, startY));
+        this.snake.add(new Piece(startX, startY));
         this.grows = true;
     }
     
@@ -34,7 +34,7 @@ public class Snake {
         return this.snake.size();
     }
     
-    public List<SnakePiece> getPieces() {
+    public List<Piece> getPieces() {
         return this.snake;
     }
     
@@ -58,7 +58,7 @@ public class Snake {
                 break;
         }
         
-        this.snake.add(new SnakePiece(x, y));
+        this.snake.add(new Piece(x, y));
         if (!grows) {
             this.snake.remove(this.snake.get(0));
         }
@@ -73,7 +73,7 @@ public class Snake {
         grows = true;
     }
     
-    public boolean hits(SnakePiece piece) {
+    public boolean hits(Piece piece) {
         boolean hits = false;
         for (int i = 0; i < this.snake.size(); i++) {
             if (this.snake.get(i).hits(piece)) {

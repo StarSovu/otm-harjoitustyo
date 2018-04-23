@@ -2,10 +2,10 @@
 package com.mycompany.minigamecollection;
 
 
-public class SnakeScore {
+public class Score {
     private int score;
     
-    public SnakeScore() {
+    public Score() {
         this.score = 0;
     }
     

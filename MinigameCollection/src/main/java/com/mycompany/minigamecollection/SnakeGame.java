@@ -8,12 +8,13 @@ public class SnakeGame {
     private int width;
     private int height;
     private boolean end;
-    private SnakeOrange orange;
+    private Fruit orange;
+    private Fruit lemon;
     private Snake snake;
     private Random random;
-    private SnakeScore score;
+    private Score score;
     
-    public SnakeGame(int width, int height, SnakeScore score) {
+    public SnakeGame(int width, int height, Score score) {
         this.width = width;
         this.height = height;
         this.score = score;
@@ -22,12 +23,16 @@ public class SnakeGame {
         
         this.random = new Random();
         int x = width/2;
-        int y = width/2;
-        while (x == width/2 && y == width/2) {
+        int y = height/2;
+        while (x == width/2 && y == height/2) {
             x = this.random.nextInt(width);
             y = this.random.nextInt(height);
         }
-        this.orange = new SnakeOrange(x, y);
+        this.orange = new Fruit(x, y);
+        this.orange.setType(true);
+        
+        this.lemon = new Fruit(width + 1, height + 1);
+        this.lemon.setType(false);
         
         this.end = false;
     }
@@ -40,12 +45,20 @@ public class SnakeGame {
         this.snake = snake;
     }
     
-    public SnakeOrange getOrange() {
+    public Fruit getOrange() {
         return this.orange;
     }
     
-    public void setOrange(SnakeOrange orange) {
-        this.orange = orange;
+    public Fruit getLemon() {
+        return this.lemon;
+    }
+    
+    public void setFruit(Fruit fruit) {
+        if (fruit.isOrange()) {
+            this.orange = fruit;
+        } else {
+            this.lemon = fruit;
+        }
     }
     
     public boolean end() {
@@ -58,11 +71,29 @@ public class SnakeGame {
         if (this.snake.hits(this.orange)) {
            this.snake.grow();
            this.score.increaseScore();
+           System.out.println(this.score.getScore());
            
            while (this.snake.hits(this.orange)) {
-               System.out.println(this.score.getScore());
-               this.orange = new SnakeOrange(random.nextInt(width), random.nextInt(height));
+               this.orange = new Fruit(random.nextInt(width), random.nextInt(height));
            }
+           this.orange.setType(true);
+           
+           if (this.score.getScore() % 10 == 0) {
+                this.lemon = new Fruit(random.nextInt(width), random.nextInt(height));
+                while (this.snake.hits(this.lemon)) {
+                    this.lemon = new Fruit(random.nextInt(width), random.nextInt(height));
+                }
+                this.lemon.setType(false);
+           }
+        }
+        
+        if (this.snake.hits(this.lemon)) {
+            this.score.increaseScore();
+            this.score.increaseScore();
+            System.out.println(this.score.getScore());
+            
+            this.lemon = new Fruit(width + 1, height + 1);
+            this.lemon.setType(false);
         }
         
         int x = this.snake.getPieces().get(this.snake.getLength() - 1).getX();

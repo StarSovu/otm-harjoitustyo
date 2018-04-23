@@ -2,11 +2,11 @@
 package com.mycompany.minigamecollection;
 
 
-public class SnakePiece {
+public class Piece {
     private int x;
     private int y;
     
-    public SnakePiece(int x, int y) {
+    public Piece(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -19,7 +19,7 @@ public class SnakePiece {
         return this.y;
     }
     
-    public boolean hits(SnakePiece piece) {
+    public boolean hits(Piece piece) {
         return (piece.getX() == this.x && piece.getY() == this.y);
     }
     

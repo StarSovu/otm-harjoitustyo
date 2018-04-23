@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
-    SnakeScore snakeScore;
+    Score snakeScore;
     Label scoreLabel;
     
     @Override
@@ -32,9 +32,9 @@ public class Main extends Application {
         
         GridPane games = new GridPane();
         
-        Button game3 = new Button("Snake");
+        Button singlePlayer = new Button("Snake");
         
-        games.add(game3, 2, 0);
+        games.add(singlePlayer, 2, 0);
         
         VBox menu = new VBox();
         menu.getChildren().add(label);
@@ -78,10 +78,10 @@ public class Main extends Application {
         
         
         //snake
-        snakeScore = new SnakeScore();
+        snakeScore = new Score();
 
         
-        game3.setOnAction((event) -> {
+        singlePlayer.setOnAction((event) -> {
             stage.setScene(game3Instructions);
         });
         
@@ -107,7 +107,7 @@ public class Main extends Application {
         stage.show();
     }
     
-    public void snake(Stage stage, Scene mainMenu, SnakeScore score) {
+    public void snake(Stage stage, Scene mainMenu, Score score) {
         Canvas canvas = new Canvas(600, 600);
         GraphicsContext drawer = canvas.getGraphicsContext2D();
         
@@ -145,8 +145,12 @@ public class Main extends Application {
                 });
 
                 drawer.setFill(Color.ORANGE);
-                SnakeOrange orange = snakeGame.getOrange();
+                Fruit orange = snakeGame.getOrange();
                 drawer.fillRect(orange.getX() * 20, orange.getY() * 20, 20, 20);
+                
+                drawer.setFill(Color.YELLOW);
+                Fruit lemon = snakeGame.getLemon();
+                drawer.fillRect(lemon.getX() * 20, lemon.getY() * 20, 20, 20);
 
             }
         }.start();
