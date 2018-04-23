@@ -11,4 +11,4 @@
 | 17.4. | 1    | matopelin, joka ei edes toimi |
 | 19.4. | 1    | jonkin verran korjausta |
 | 23.4. | 2    | matopelin edistystä, minipelikokoelman korvaus matopelillä |
-| yht.  | 8    |
+| yht.  | 10   |
