@@ -21,6 +21,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
+    SnakeScore snakeScore;
+    Label scoreLabel;
+    
     @Override
     public void start(Stage stage) {
         // start menu
@@ -29,12 +32,8 @@ public class Main extends Application {
         
         GridPane games = new GridPane();
         
-        Button game1 = new Button("Collect Food");
-        Button game2 = new Button("Protect the Town");
         Button game3 = new Button("Snake");
         
-        games.add(game1, 0, 0);
-        games.add(game2, 1, 0);
         games.add(game3, 2, 0);
         
         VBox menu = new VBox();
@@ -42,33 +41,6 @@ public class Main extends Application {
         menu.getChildren().add(games);
         
         Scene mainMenu = new Scene(menu);
-        
-        // game 1 instructions 
-        VBox game1VBox = new VBox();
-        
-        Label game1Label = new Label("Choose healthy food, avoid unhealthy");
-        
-        HBox game1HBox = new HBox();
-        game1HBox.setSpacing(40);
-        Button back1 = new Button("Back");
-        Button start1 = new Button ("Start");
-        game1HBox.getChildren().add(back1);
-        game1HBox.getChildren().add(start1);
-        
-        game1VBox.getChildren().add(game1Label);
-        game1VBox.getChildren().add(game1HBox);
-        
-        Scene game1Instructions = new Scene(game1VBox);
-        
-        // game 2 instructions 
-        VBox game2VBox = new VBox();
-        
-        Label game2Label = new Label("Don't let them destroy all walls");
-        Button back2 = new Button("Back");
-        game2VBox.getChildren().add(game2Label);
-        game2VBox.getChildren().add(back2);
-        
-        Scene game2Instructions = new Scene(game2VBox);
         
         // game 3 instructions 
         VBox game3VBox = new VBox();
@@ -90,7 +62,7 @@ public class Main extends Application {
         // game 3 end
         VBox game3EndVBox = new VBox();
         
-        Label game3EndLabel = new Label("Your score: ");
+        scoreLabel = new Label("Your score: ");
         
         HBox game3EndHBox = new HBox();
         game3EndHBox.setSpacing(40);
@@ -99,46 +71,18 @@ public class Main extends Application {
         game3EndHBox.getChildren().add(back3End);
         game3EndHBox.getChildren().add(start3End);
         
-        game3EndVBox.getChildren().add(game3EndLabel);
+        game3EndVBox.getChildren().add(scoreLabel);
         game3EndVBox.getChildren().add(game3EndHBox);
         
-        Scene game3End = new Scene(game3EndVBox);
-        
-        
-        
-        // food collection
-        FoodCollectingScore score = new FoodCollectingScore();
-        
-        Pane foodCollectScreen = new Pane();
-        foodCollectScreen.setPrefSize(480, 360);
-        
-        Scene foodCollection = new Scene(foodCollectScreen);
-        
+        Scene game3End = new Scene(game3EndVBox);        
         
         
         //snake
-        SnakeScore snakeScore = new SnakeScore();
-        
-        
-        //changing scenes
-        game1.setOnAction((event) -> {
-            stage.setScene(game1Instructions);
-        });
-        
-        game2.setOnAction((event) -> {
-            stage.setScene(game2Instructions);
-        });
+        snakeScore = new SnakeScore();
+
         
         game3.setOnAction((event) -> {
             stage.setScene(game3Instructions);
-        });
-        
-        back1.setOnAction((event) -> {
-            stage.setScene(mainMenu);
-        });
-        
-        back2.setOnAction((event) -> {
-            stage.setScene(mainMenu);
         });
         
         back3.setOnAction((event) -> {
@@ -147,10 +91,6 @@ public class Main extends Application {
         
         back3End.setOnAction((event) -> {
             stage.setScene(mainMenu);
-        });
-        
-        start1.setOnAction((event) -> {
-            stage.setScene(foodCollection);
         });
         
         start3.setOnAction((event) -> {
@@ -225,6 +165,8 @@ public class Main extends Application {
                 snakeGame.update();
 
                 if (snakeGame.end()) {
+                    scoreLabel.setText("Your score: " + score.getScore());
+                    score.resetScore();
                     stop();
                     stage.setScene(mainMenu);
                 }

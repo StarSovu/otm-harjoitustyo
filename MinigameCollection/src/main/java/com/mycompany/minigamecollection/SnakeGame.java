@@ -60,6 +60,7 @@ public class SnakeGame {
            this.score.increaseScore();
            
            while (this.snake.hits(this.orange)) {
+               System.out.println(this.score.getScore());
                this.orange = new SnakeOrange(random.nextInt(width), random.nextInt(height));
            }
         }
