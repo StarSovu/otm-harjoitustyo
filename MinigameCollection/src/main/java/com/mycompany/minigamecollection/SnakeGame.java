@@ -93,6 +93,10 @@ public class SnakeGame {
     }
     
     public void update() {
+        if (end) {
+            return;
+        }
+        
         this.snake.move();
         
         if (multiplayer) {
