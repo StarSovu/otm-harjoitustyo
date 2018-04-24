@@ -21,20 +21,24 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
-    Score snakeScore;
+    Score score;
     Label scoreLabel;
+    Label winnerLabel;
     
     @Override
     public void start(Stage stage) {
         // start menu
         
-        Label label = new Label("Select Minigame");
+        Label label = new Label("Select Number of Players");
         
-        GridPane games = new GridPane();
+        HBox games = new HBox();
+        games.setSpacing(115);
         
-        Button singlePlayer = new Button("Snake");
+        Button singlePlayer = new Button("1");
+        Button multiPlayer = new Button("2");
         
-        games.add(singlePlayer, 2, 0);
+        games.getChildren().add(singlePlayer);
+        games.getChildren().add(multiPlayer);
         
         VBox menu = new VBox();
         menu.getChildren().add(label);
@@ -42,72 +46,127 @@ public class Main extends Application {
         
         Scene mainMenu = new Scene(menu);
         
-        // game 3 instructions 
-        VBox game3VBox = new VBox();
+        // single player instructions 
+        VBox singlePlayerVBox = new VBox();
         
-        Label game3Label = new Label("Make the snake eat the oranges so it grows. If the snake hits itself, the game is over.");
+        Label singlePlayerLabel = new Label("Make the snake eat the oranges so it grows. If the snake hits itself, the game is over. Use arrow keys to control.");
         
-        HBox game3HBox = new HBox();
-        game3HBox.setSpacing(40);
-        Button back3 = new Button("Back");
-        Button start3 = new Button ("Start");
-        game3HBox.getChildren().add(back3);
-        game3HBox.getChildren().add(start3);
+        HBox singlePlayerHBox = new HBox();
+        singlePlayerHBox.setSpacing(40);
+        Button back1 = new Button("Back");
+        Button start1 = new Button ("Start");
+        singlePlayerHBox.getChildren().add(back1);
+        singlePlayerHBox.getChildren().add(start1);
         
-        game3VBox.getChildren().add(game3Label);
-        game3VBox.getChildren().add(game3HBox);
+        singlePlayerVBox.getChildren().add(singlePlayerLabel);
+        singlePlayerVBox.getChildren().add(singlePlayerHBox);
         
-        Scene game3Instructions = new Scene(game3VBox);
+        Scene singlePlayerInstructions = new Scene(singlePlayerVBox);
         
-        // game 3 end
-        VBox game3EndVBox = new VBox();
+        // multiplayer instructions 
+        VBox multiPlayerVBox = new VBox();
+        
+        Label multiPlayerLabel = new Label("Try to defeat the other snake. Use arrows to control green and WASD to control blue.");
+        
+        HBox multiPlayerHBox = new HBox();
+        multiPlayerHBox.setSpacing(40);
+        Button back2 = new Button("Back");
+        Button start2 = new Button ("Start");
+        multiPlayerHBox.getChildren().add(back2);
+        multiPlayerHBox.getChildren().add(start2);
+        
+        multiPlayerVBox.getChildren().add(multiPlayerLabel);
+        multiPlayerVBox.getChildren().add(multiPlayerHBox);
+        
+        Scene multiPlayerInstructions = new Scene(multiPlayerVBox);
+        
+        // single player end
+        VBox singlePlayerEndVBox = new VBox();
         
         scoreLabel = new Label("Your score: ");
         
-        HBox game3EndHBox = new HBox();
-        game3EndHBox.setSpacing(40);
-        Button back3End = new Button("Back");
-        Button start3End = new Button ("Play Again");
-        game3EndHBox.getChildren().add(back3End);
-        game3EndHBox.getChildren().add(start3End);
+        HBox singlePlayerEndHBox = new HBox();
+        singlePlayerEndHBox.setSpacing(40);
+        Button back1end = new Button("Back");
+        Button start1end = new Button ("Play Again");
+        singlePlayerEndHBox.getChildren().add(back1end);
+        singlePlayerEndHBox.getChildren().add(start1end);
         
-        game3EndVBox.getChildren().add(scoreLabel);
-        game3EndVBox.getChildren().add(game3EndHBox);
+        singlePlayerEndVBox.getChildren().add(scoreLabel);
+        singlePlayerEndVBox.getChildren().add(singlePlayerEndHBox);
         
-        Scene game3End = new Scene(game3EndVBox);        
-        
-        
-        //snake
-        snakeScore = new Score();
+        Scene singlePlayerEnd = new Scene(singlePlayerEndVBox);
 
+        // multiplayer end
+        // single player end
+        VBox multiPlayerEndVBox = new VBox();
         
+        winnerLabel = new Label("Winner: ");
+        
+        HBox multiPlayerEndHBox = new HBox();
+        multiPlayerEndHBox.setSpacing(40);
+        Button back2end = new Button("Back");
+        Button start2end = new Button ("Play Again");
+        multiPlayerEndHBox.getChildren().add(back2end);
+        multiPlayerEndHBox.getChildren().add(start2end);
+        
+        multiPlayerEndVBox.getChildren().add(winnerLabel);
+        multiPlayerEndVBox.getChildren().add(multiPlayerEndHBox);
+        
+        Scene multiPlayerEnd = new Scene(multiPlayerEndVBox);
+        
+        
+        //creation of score
+        score = new Score();
+
+        // changing scenes
         singlePlayer.setOnAction((event) -> {
-            stage.setScene(game3Instructions);
+            stage.setScene(singlePlayerInstructions);
         });
         
-        back3.setOnAction((event) -> {
+        multiPlayer.setOnAction((event) -> {
+            stage.setScene(multiPlayerInstructions);
+        });
+        
+        back1.setOnAction((event) -> {
             stage.setScene(mainMenu);
         });
         
-        back3End.setOnAction((event) -> {
+        back2.setOnAction((event) -> {
             stage.setScene(mainMenu);
         });
         
-        start3.setOnAction((event) -> {
-            snake(stage, game3End, snakeScore);
+        back1end.setOnAction((event) -> {
+            stage.setScene(mainMenu);
         });
         
-        start3End.setOnAction((event) -> {
-            snake(stage, game3End, snakeScore);
+        back2end.setOnAction((event) -> {
+            stage.setScene(mainMenu);
+        });
+        
+        start1.setOnAction((event) -> {
+            snake(stage, singlePlayerEnd, false);
+        });
+        
+        start2.setOnAction((event) -> {
+            snake(stage, multiPlayerEnd, true);
+        });
+        
+        start1end.setOnAction((event) -> {
+            snake(stage, singlePlayerEnd, false);
+        });
+        
+        start2end.setOnAction((event) -> {
+            snake(stage, multiPlayerEnd, true);
         });
         
         //start
-        stage.setTitle("Minigames");
+        stage.setTitle("Snake");
         stage.setScene(mainMenu);
         stage.show();
     }
     
-    public void snake(Stage stage, Scene mainMenu, Score score) {
+    public void snake(Stage stage, Scene mainMenu, boolean multiplayer) {
         Canvas canvas = new Canvas(600, 600);
         GraphicsContext drawer = canvas.getGraphicsContext2D();
         
@@ -118,7 +177,7 @@ public class Main extends Application {
         
         stage.setScene(snake);
 
-        SnakeGame snakeGame = new SnakeGame(30, 30, score);
+        SnakeGame snakeGame = new SnakeGame(30, 30, score, multiplayer);
         
         // draws 30 times a second
         new AnimationTimer() {
@@ -143,7 +202,19 @@ public class Main extends Application {
                 snakeGame.getSnake().getPieces().stream().forEach(piece -> {
                     drawer.fillRect(piece.getX() * 20, piece.getY() * 20, 20, 20);
                 });
+                
+                if (multiplayer) {
+                    drawer.setFill(Color.BLUE);
 
+                    if (snakeGame.end()) {
+                        drawer.setFill(Color.DARKBLUE);
+                    }
+
+                    snakeGame.getSnake2().getPieces().stream().forEach(piece -> {
+                        drawer.fillRect(piece.getX() * 20, piece.getY() * 20, 20, 20);
+                    });
+                }
+                
                 drawer.setFill(Color.ORANGE);
                 Fruit orange = snakeGame.getOrange();
                 drawer.fillRect(orange.getX() * 20, orange.getY() * 20, 20, 20);
@@ -169,8 +240,27 @@ public class Main extends Application {
                 snakeGame.update();
 
                 if (snakeGame.end()) {
-                    scoreLabel.setText("Your score: " + score.getScore());
-                    score.resetScore();
+                    if (multiplayer) {
+                        int winner = snakeGame.getWinner();
+                        
+                        switch (winner) {
+                            case 1:
+                                winnerLabel.setText("Winner: Green");
+                                break;
+                            case 2:
+                                winnerLabel.setText("Winner: Blue");
+                                break;
+                            case 3:
+                                winnerLabel.setText("Tie");
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                    } else {
+                        scoreLabel.setText("Your score: " + score.getScore());
+                        score.resetScore();
+                    }
                     stop();
                     stage.setScene(mainMenu);
                 }
@@ -191,6 +281,26 @@ public class Main extends Application {
                     break;
                 case LEFT:
                     snakeGame.getSnake().setDirection(Direction.LEFT);
+                    break;
+                case W:
+                    if (multiplayer) {
+                        snakeGame.getSnake2().setDirection(Direction.UP);
+                    }
+                    break;
+                case S:
+                    if (multiplayer) {
+                        snakeGame.getSnake2().setDirection(Direction.DOWN);
+                    }
+                    break;
+                case D:
+                    if (multiplayer) {
+                        snakeGame.getSnake2().setDirection(Direction.RIGHT);
+                    }
+                    break;
+                case A:
+                    if (multiplayer) {
+                        snakeGame.getSnake2().setDirection(Direction.LEFT);
+                    }
                     break;
                 default:
                     break;

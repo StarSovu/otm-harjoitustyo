@@ -96,4 +96,11 @@ public class Snake {
         return hits;
     }
     
+    public boolean hitsOtherSnake(Snake otherSnake) {
+        List<Piece> snake2 = otherSnake.getPieces();
+        Piece snake2Head = snake2.get(snake2.size() - 1);
+        
+        return this.hits(snake2Head);
+    }
+    
 }
