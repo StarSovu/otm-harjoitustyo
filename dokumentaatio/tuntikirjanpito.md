@@ -11,5 +11,5 @@
 | 17.4. | 1    | matopelin, joka ei edes toimi |
 | 19.4. | 1    | jonkin verran korjausta |
 | 23.4. | 2    | matopelin edistystä, minipelikokoelman korvaus matopelillä |
-| 24.4. | 2    | kaksinpeli |
-| yht.  | 12   |
+| 24.4. | 3    | kaksinpelin lisäys, github release, jar, vaatimusmäärittelyn päivittäminen |
+| yht.  | 13   |
