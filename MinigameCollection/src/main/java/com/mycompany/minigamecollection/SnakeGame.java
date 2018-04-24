@@ -30,6 +30,7 @@ public class SnakeGame {
             this.snake = new Snake(width/2 + 2, height/2, Direction.DOWN);
         } else {
             this.snake = new Snake(width/2, height/2, Direction.DOWN);
+            this.snake2 = new Snake(width + 1, height + 1, Direction.UP);
         }
         
         this.random = new Random();
@@ -106,7 +107,7 @@ public class SnakeGame {
                 System.out.println(this.score.getScore());
             }
 
-            while (this.snake.hits(this.orange)) {
+            while (this.snake.hits(this.orange) || this.snake2.hits(this.orange)) {
                 this.orange = new Fruit(random.nextInt(width), random.nextInt(height));
             }
             this.orange.setType(true);
@@ -121,7 +122,7 @@ public class SnakeGame {
         }
         
         if (multiplayer) {
-            if (this.snake2.hits(this.orange)) {
+            if (this.snake.hits(this.orange) || this.snake2.hits(this.orange)) {
                 this.snake2.grow();
 
                 while (this.snake2.hits(this.orange)) {

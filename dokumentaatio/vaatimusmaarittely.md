@@ -1,50 +1,34 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen tarkoitus
-Sovellus on kokoelma erilaisia minipelejä, joista voi saada pisteitä. Pelistä riippuen tavoitteena voi olla joko suorittaa tietty asia mahdollisimman lyhyessä ajassa, selviytyä mahdollisimman kauan tai saada mahdollisimman paljon pisteitä.
+Sovellus on käärmepeli (matopeli), jossa voi pelata joko yksin enemmän perinteisen matopelin kaltaista peliä tai kaksin vastakkain.
 
 ## Käyttäjät
-Vain tavallisia käyttäjiä. Ei sisäänkirjautumista. Jossakin vaiheessa sovelluukseen kuitenkin saatetaan lisätä toiminnallisuus, jossa käyttäjä voi kirjoittaa nimen, joka näkyy top-listoilla.
+Vain tavallisia käyttäjiä (yksi tai kaksi kerrallaan riippuen siitä pelaako yksin vai kaksin). Ei sisäänkirjautumista. Jossakin vaiheessa sovelluukseen kuitenkin saatetaan lisätä toiminnallisuus, jossa käyttäjä voi kirjoittaa nimen, joka näkyy top-listoilla.
 
 ## Perusversion tarjoama toiminnallisuus
-Tämä osio sisältää vanhentunutta tietoa, jota ei tällä hetkellä vielä korjata.
 
 Sovelluksen käynnistyessä näkyy valikko.
-- Valikossa on nappeja, joita painamalla päästään kuhunkin minipeliin.
-- Minipelin päätyttyä palataan valikkoon.
+- Valikossa on nappeja, joita painamalla voi valita joko yksin- tai kaksinpelin.
+- Pelin päätyttyä palataan valikkoon.
 
-Käärmepeli (uusi versio matopelistä)
+Yksipeli
 - Ohjataan käärmettä.
-- Käärme kasvaa, kun se syö appelsiinin.
+- Käärme kasvaa, kun se syö appelsiinin. Samalla saadaan yksi piste.
 - Jos käärme osuu itseensä tai seinään, peli on ohi.
 - Käärme ei voi kääntyä vastakkaiseen suuntaan siitä, mihin se on sillä hetkellä menossa.
-- Tavoitteena saada mahdollisimman pitkä käärme.
+- Joka kymmenes pisteen tienaus aihettaa sitruunan ilmestymisen.
+- Syömällä sitruunan tienataan kaksi pistettä ilman, että käärme kasvaa.
+- Tavoitteena saada mahdollisimman monta pistettä.
 
-Ruoankeräyspeli
-- Pelissä on aikaraja.
-- Ruutuun ilmestyy ruokia, jotka ovat painettavissa rajoitetun ajan.
-- Ruoat ilmestyvät satunnaiseen kohtaan ruutua.
-- Terveellisiä ruokia painamalla saa pisteitä, epäterveellisiä painamalla menettää pisteitä.
-- Enemmän pisteitä antavat ruoat ilmestyvät ruutuuun harvemmin.
-- Tavoitteena on saada mahdollisimman suuri määrä pisteitä.
-
-Puolustuspeli
-- Tavoitteena on puolustaa rakennelmia (tämä saattaa muuttua myöhemmin) mahdollisimman kauan.
-- Rakennelmia on rajoitettu määrä.
-- Pelissä on lähestyviä vihollisia.
-- Jos vihollinen pääsee rajan yli, yksi rakennelma on menetetty.
-- Pelissä on yksi hahmo, joka osoittaa johonkin suuntaan.
-- Hahmon osoitussuuntaa voi vaihtaa nuolinäppäimillä.
-- Hahmo voi ampua panoksia osoittamaansa suuntaan.
-- Panoksia voi ampua rajoitetun ajan (mahdollisesti sekunnin) välein
-- Panokset ja viholliset liikkuvat tietyillä nopeuksilla.
-- Viholliset tuhoutuvat, jos panos osuu niihin.
-- Mitä pidemmälle peli etenee, sitä enemmän vihollisia tulee kerrallaan.
-- Peli loppuu, kun kaikki rakennelmat ovat tuhoutuneet.
-- Pisteinä kulunut aika.
+Kaksinpeli
+- Pelaaja 1 ja pelaaja 2 ohjaa kumpikin käärmettä.
+- Käärmeen kasvaminen ja ohjaaminen toimivat samalla tavalla kuin yksinpelissä.
+- Sitruunoita ei ole eikä pisteitä lasketa.
+- Jos käärme osuu itseensä, seinään tai liikkuu kohti vastustajan käärmettä, häviää ja peli loppuu.
+- Jos molemmat pelaajat häviävät samanaikaisesti, peli loppuu tasan.
 
 ## Jatkokehitysideoita
-- Lisää minipelejä ja mahdollisuus päästä niihin valikon kautta.
-- Jo olemassa olevien pelien kehittäminen.
-- Kirjanpito parhaista tuloksista kussakin pelissä, top-listat.
-- Mahdollisuus kirjautua sisään jollakin käyttäjänimellä ja pitää kirjaa henkilökohtaisista parhaista suorituksista.
+- Kirjanpito parhaista tuloksista ykspelissä, top-lista.
+- Mahdollisuus kirjautua sisään jollakin käyttäjänimellä ja pitää kirjaa henkilökohtaisista parhaista yksinpelin suorituksista.
+- Mahdollisuus kirjautua sisään jollakin kaksikon käyttäjänimellä ja pitää kirjaa siitä, kumpi käärme on voittanut kuinka monta kertaa kaksinpelissä.

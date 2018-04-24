@@ -1,6 +1,6 @@
 # MinigameCollection
 
-MiniGame Collection on kokoelma minipelejä.
+Matopelin versio, Snake, jossa yksinpeli ja kaksinpeli.
 
 ## Dokumentaatio
 
