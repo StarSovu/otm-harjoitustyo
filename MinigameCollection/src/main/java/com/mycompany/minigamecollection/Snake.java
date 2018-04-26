@@ -41,21 +41,23 @@ public class Snake {
     public void move() {
         int x = this.snake.get(this.snake.size() - 1).getX();
         int y = this.snake.get(this.snake.size() - 1).getY();
-        if (null != this.direction) switch (this.direction) {
-            case UP:
-                y--;
-                break;
-            case RIGHT:
-                x++;
-                break;
-            case DOWN:
-                y++;
-                break;
-            case LEFT:
-                x--;
-                break;
-            default:
-                break;
+        if (null != this.direction) { 
+            switch (this.direction) {
+                case UP:
+                    y--;
+                    break;
+                case RIGHT:
+                    x++;
+                    break;
+                case DOWN:
+                    y++;
+                    break;
+                case LEFT:
+                    x--;
+                    break;
+                default:
+                    break;
+            }
         }
         
         this.snake.add(new Piece(x, y));

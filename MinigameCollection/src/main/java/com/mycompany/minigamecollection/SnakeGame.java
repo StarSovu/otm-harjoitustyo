@@ -26,17 +26,17 @@ public class SnakeGame {
         this.multiplayer = multiplayer;
         
         if (multiplayer) {
-            this.snake2 = new Snake(width/2 - 3, height/2 - 1, Direction.UP);
-            this.snake = new Snake(width/2 + 2, height/2, Direction.DOWN);
+            this.snake2 = new Snake(width / 2 - 3, height / 2 - 1, Direction.UP);
+            this.snake = new Snake(width / 2 + 2, height / 2, Direction.DOWN);
         } else {
-            this.snake = new Snake(width/2, height/2, Direction.DOWN);
+            this.snake = new Snake(width / 2, height / 2, Direction.DOWN);
             this.snake2 = new Snake(width + 1, height + 1, Direction.UP);
         }
         
         this.random = new Random();
-        int x = width/2;
-        int y = height/2;
-        while (x == width/2 && y == height/2) {
+        int x = width / 2;
+        int y = height / 2;
+        while (x == width / 2 && y == height / 2) {
             x = this.random.nextInt(width);
             y = this.random.nextInt(height);
         }
@@ -122,7 +122,7 @@ public class SnakeGame {
                     this.lemon = new Fruit(random.nextInt(width), random.nextInt(height));
                 }
                 this.lemon.setType(false);
-           }
+            }
         }
         
         if (multiplayer) {
@@ -155,28 +155,28 @@ public class SnakeGame {
             int x2 = this.snake2.getPieces().get(this.snake2.getLength() - 1).getX();
             int y2 = this.snake2.getPieces().get(this.snake2.getLength() - 1).getY();
             
-            if(this.snake.hitsItself()|| x < 0 || x >= this.width || y < 0 || y >= this.height || snake2.hitsOtherSnake(snake)) {
+            if (this.snake.hitsItself() || x < 0 || x >= this.width || y < 0 || y >= this.height || snake2.hitsOtherSnake(snake)) {
                 this.player1End = true;
             }
             
-            if(this.snake2.hitsItself()|| x2 < 0 || x2 >= this.width || y2 < 0 || y2 >= this.height || snake.hitsOtherSnake(snake2)) {
+            if (this.snake2.hitsItself() || x2 < 0 || x2 >= this.width || y2 < 0 || y2 >= this.height || snake.hitsOtherSnake(snake2)) {
                 this.player2End = true;
             }
             
-            if(player1End || player2End) {
+            if (player1End || player2End) {
                 
-                if(player1End) {
+                if (player1End) {
                     winner += 2;
                 }
-                if(player2End) {
-                    winner ++;
+                if (player2End) {
+                    winner++;
                 }
                 
                 this.end = true;
             }
             
         } else {
-            if(this.snake.hitsItself()|| x < 0 || x >= this.width || y < 0 || y >= this.height) {
+            if (this.snake.hitsItself() || x < 0 || x >= this.width || y < 0 || y >= this.height) {
                 this.end = true;
             }
         }

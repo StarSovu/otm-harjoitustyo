@@ -54,7 +54,7 @@ public class Main extends Application {
         HBox singlePlayerHBox = new HBox();
         singlePlayerHBox.setSpacing(40);
         Button back1 = new Button("Back");
-        Button start1 = new Button ("Start");
+        Button start1 = new Button("Start");
         singlePlayerHBox.getChildren().add(back1);
         singlePlayerHBox.getChildren().add(start1);
         
@@ -71,7 +71,7 @@ public class Main extends Application {
         HBox multiPlayerHBox = new HBox();
         multiPlayerHBox.setSpacing(40);
         Button back2 = new Button("Back");
-        Button start2 = new Button ("Start");
+        Button start2 = new Button("Start");
         multiPlayerHBox.getChildren().add(back2);
         multiPlayerHBox.getChildren().add(start2);
         
@@ -88,7 +88,7 @@ public class Main extends Application {
         HBox singlePlayerEndHBox = new HBox();
         singlePlayerEndHBox.setSpacing(40);
         Button back1end = new Button("Back");
-        Button start1end = new Button ("Play Again");
+        Button start1end = new Button("Play Again");
         singlePlayerEndHBox.getChildren().add(back1end);
         singlePlayerEndHBox.getChildren().add(start1end);
         
@@ -106,7 +106,7 @@ public class Main extends Application {
         HBox multiPlayerEndHBox = new HBox();
         multiPlayerEndHBox.setSpacing(40);
         Button back2end = new Button("Back");
-        Button start2end = new Button ("Play Again");
+        Button start2end = new Button("Play Again");
         multiPlayerEndHBox.getChildren().add(back2end);
         multiPlayerEndHBox.getChildren().add(start2end);
         
