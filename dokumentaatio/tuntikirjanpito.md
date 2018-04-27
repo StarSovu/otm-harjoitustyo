@@ -12,4 +12,6 @@
 | 19.4. | 1    | jonkin verran korjausta |
 | 23.4. | 2    | matopelin edistystä, minipelikokoelman korvaus matopelillä |
 | 24.4. | 4    | kaksinpelin lisäys, github release, jar, vaatimusmäärittelyn päivittäminen, testejä |
-| yht.  | 14   |
+| 26.4. | 1    | checkstyle |
+| 27.4. | 1    | turha yritys muuttaa koodia mutta peli meni rikki, peli on edelleen rikki vaikka kaikki päivän muutokset on kumottu |
+| yht.  | 16   |
