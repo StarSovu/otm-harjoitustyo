@@ -14,4 +14,5 @@
 | 24.4. | 4    | kaksinpelin lisäys, github release, jar, vaatimusmäärittelyn päivittäminen, testejä |
 | 26.4. | 1    | checkstyle |
 | 27.4. | 1    | turha yritys muuttaa koodia mutta peli meni rikki, peli on edelleen rikki vaikka kaikki päivän muutokset on kumottu |
+| 29.4. | 0    | checkstylen aiheuttaman ongelman korjaus |
 | yht.  | 16   |
