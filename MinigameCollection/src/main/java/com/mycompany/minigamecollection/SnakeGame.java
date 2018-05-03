@@ -17,7 +17,7 @@ public class SnakeGame {
     private Snake snake2;
     private Random random;
     private Score score;
-    private int winner; //0: not over/single player, 1: snake1 (green), 2: snake2 (blue), 3: tie
+    private int winner; //in multiplayer: 0: not over, 1: snake1 (green), 2: snake2 (blue), 3: tie; is useless in single player
     
     public SnakeGame(int width, int height, Score score, boolean multiplayer) {
         this.width = width;
@@ -34,17 +34,13 @@ public class SnakeGame {
         }
         
         this.random = new Random();
-        int x = width / 2;
-        int y = height / 2;
-        while (x == width / 2 && y == height / 2) {
-            x = this.random.nextInt(width);
-            y = this.random.nextInt(height);
-        }
-        this.orange = new Fruit(x, y);
-        this.orange.setType(true);
         
         this.lemon = new Fruit(width + 1, height + 1);
         this.lemon.setType(false);
+        
+        this.orange = new Fruit(width + 1, height + 1);
+        this.orange.setType(true);
+        this.setRandomOrange();
         
         this.end = false;
         this.player1End = false;
@@ -84,6 +80,20 @@ public class SnakeGame {
         }
     }
     
+    public void setRandomOrange() { 
+        while (this.snake.hits(this.orange) || this.snake2.hits(this.orange) || this.orange.hits(this.lemon) || this.orange.getX() == width + 1) {
+            this.orange = new Fruit(random.nextInt(width), random.nextInt(height));
+        }
+        this.orange.setType(true);
+    }
+    
+    public void setRandomLemon() { 
+        while (this.snake.hits(this.lemon) || this.snake2.hits(this.lemon) || this.orange.hits(this.lemon) || this.lemon.getX() == width + 1) {
+            this.lemon = new Fruit(random.nextInt(width), random.nextInt(height));
+        }
+        this.lemon.setType(false);
+    }
+    
     public boolean end() {
         return this.end;
     }
@@ -97,6 +107,29 @@ public class SnakeGame {
             return;
         }
         
+        this.moveSnakes();
+        
+        this.player1End = this.gameOver(snake, snake2);
+        
+        if (multiplayer) {
+            
+            this.player2End = this.gameOver(snake2, snake);
+        }
+            
+        if (player1End || player2End) {
+
+            if (player1End) {
+                winner += 2;
+            }
+            if (player2End) {
+                winner++;
+            }
+
+            this.end = true;
+        }
+    }
+    
+    public void moveSnakes() {
         this.snake.move();
         
         if (multiplayer) {
@@ -104,81 +137,55 @@ public class SnakeGame {
         }
         
         if (this.snake.hits(this.orange)) {
-            this.snake.grow();
-            
-            if (!multiplayer) {
-                this.score.increaseScore();
-                System.out.println(this.score.getScore());
-            }
-
-            while (this.snake.hits(this.orange) || this.snake2.hits(this.orange)) {
-                this.orange = new Fruit(random.nextInt(width), random.nextInt(height));
-            }
-            this.orange.setType(true);
-           
-            if ((this.score.getScore() % 10 == 0) && !multiplayer) {
-                this.lemon = new Fruit(random.nextInt(width), random.nextInt(height));
-                while (this.snake.hits(this.lemon)) {
-                    this.lemon = new Fruit(random.nextInt(width), random.nextInt(height));
-                }
-                this.lemon.setType(false);
-            }
+            this.eatOrange(this.snake);
         }
         
         if (multiplayer) {
-            if (this.snake.hits(this.orange) || this.snake2.hits(this.orange)) {
-                this.snake2.grow();
-
-                while (this.snake2.hits(this.orange)) {
-                    this.orange = new Fruit(random.nextInt(width), random.nextInt(height));
-                }
-                this.orange.setType(true);
+            if (this.snake2.hits(this.orange)) {
+                this.eatOrange(this.snake2);
             }
         }
         
         if (!multiplayer) {
             if (this.snake.hits(this.lemon)) {
-                this.score.increaseScore();
-                this.score.increaseScore();
-                System.out.println(this.score.getScore());
-
-                this.lemon = new Fruit(width + 1, height + 1);
-                this.lemon.setType(false);
-            }
-        }
-        
-        int x = this.snake.getPieces().get(this.snake.getLength() - 1).getX();
-        int y = this.snake.getPieces().get(this.snake.getLength() - 1).getY();
-        
-        if (multiplayer) {
-            
-            int x2 = this.snake2.getPieces().get(this.snake2.getLength() - 1).getX();
-            int y2 = this.snake2.getPieces().get(this.snake2.getLength() - 1).getY();
-            
-            if (this.snake.hitsItself() || x < 0 || x >= this.width || y < 0 || y >= this.height || snake2.hitsOtherSnake(snake)) {
-                this.player1End = true;
-            }
-            
-            if (this.snake2.hitsItself() || x2 < 0 || x2 >= this.width || y2 < 0 || y2 >= this.height || snake.hitsOtherSnake(snake2)) {
-                this.player2End = true;
-            }
-            
-            if (player1End || player2End) {
-                
-                if (player1End) {
-                    winner += 2;
-                }
-                if (player2End) {
-                    winner++;
-                }
-                
-                this.end = true;
-            }
-            
-        } else {
-            if (this.snake.hitsItself() || x < 0 || x >= this.width || y < 0 || y >= this.height) {
-                this.end = true;
+                this.eatLemon();
             }
         }
     }
+    
+    public void eatOrange(Snake snake) {
+        snake.grow();
+            
+        if (!multiplayer) {
+            this.score.increaseScore();
+            System.out.println(this.score.getScore());
+        }
+
+        setRandomOrange();
+
+        if ((this.score.getScore() % 10 == 0) && !multiplayer) {
+            setRandomLemon();
+        }
+    }
+    
+    public void eatLemon() {
+        this.score.increaseScore();
+        this.score.increaseScore();
+        System.out.println(this.score.getScore());
+        
+        if (this.score.getScore() % 10 == 0 || this.score.getScore() % 10 == 1) {
+            this.setRandomLemon();
+        } else {
+            this.lemon = new Fruit(width + 1, height + 1);
+            this.lemon.setType(false);
+        }
+    }
+    
+    public boolean gameOver(Snake snake, Snake otherSnake) {
+        int x = snake.getPieces().get(snake.getLength() - 1).getX();
+        int y = snake.getPieces().get(snake.getLength() - 1).getY();
+        
+        return (snake.hitsItself() || x < 0 || x >= this.width || y < 0 || y >= this.height || snake.hitsOtherSnake(otherSnake));
+    }
+
 }

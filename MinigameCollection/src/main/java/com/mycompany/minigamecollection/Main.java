@@ -1,6 +1,8 @@
 
 package com.mycompany.minigamecollection;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,6 +26,16 @@ public class Main extends Application {
     Score score;
     Label scoreLabel;
     Label winnerLabel;
+
+    @Override
+    public void init() throws Exception {
+        Files.lines(Paths.get("highscore.txt")).forEach(rivi -> {
+        String[] palat = rivi.split(";");
+            System.out.println(palat[0] + " " + palat[1]);
+        });
+    }
+    
+
     
     @Override
     public void start(Stage stage) {
@@ -53,10 +65,14 @@ public class Main extends Application {
         
         HBox singlePlayerHBox = new HBox();
         singlePlayerHBox.setSpacing(40);
+        
         Button back1 = new Button("Back");
         Button start1 = new Button("Start");
+        Button highscores = new Button("Highscores");
+        
         singlePlayerHBox.getChildren().add(back1);
         singlePlayerHBox.getChildren().add(start1);
+        singlePlayerHBox.getChildren().add(highscores);
         
         singlePlayerVBox.getChildren().add(singlePlayerLabel);
         singlePlayerVBox.getChildren().add(singlePlayerHBox);

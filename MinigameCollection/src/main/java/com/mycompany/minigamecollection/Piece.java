@@ -20,6 +20,9 @@ public class Piece {
     }
     
     public boolean hits(Piece piece) {
+        if (piece==null) {
+            System.out.println("");
+        }
         return (piece.getX() == this.x && piece.getY() == this.y);
     }
     
