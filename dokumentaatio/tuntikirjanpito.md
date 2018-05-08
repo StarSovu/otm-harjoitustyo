@@ -15,4 +15,5 @@
 | 26.4. | 1    | checkstyle |
 | 27.4. | 1    | turha yritys muuttaa koodia mutta peli meni rikki, peli on edelleen rikki vaikka kaikki päivän muutokset on kumottu |
 | 29.4. | 0    | checkstylen aiheuttaman ongelman korjaus |
-| yht.  | 16   |
+| 3.5.  | 2    | highscore-listojen aloitus, koodin muokkausta |
+| yht.  | 18   |
