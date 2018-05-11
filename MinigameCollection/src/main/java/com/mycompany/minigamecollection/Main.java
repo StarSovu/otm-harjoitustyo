@@ -117,9 +117,14 @@ public class Main extends Application {
         Button start1final = new Button("Start");
         Button back1final = new Button("Back");
         
+        HBox usernameHBox = new HBox();
+        usernameHBox.setSpacing(40);
+        usernameHBox.getChildren().add(back1final);
+        usernameHBox.getChildren().add(start1final);
+        
         usernameVBox.getChildren().add(usernameLabel);
         usernameVBox.getChildren().add(enterUsername);
-        usernameVBox.getChildren().add(start1final);
+        usernameVBox.getChildren().add(usernameHBox);
         
         Scene selectUsernameScene = new Scene(usernameVBox);
         
