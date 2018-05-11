@@ -10,6 +10,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -27,16 +28,23 @@ public class Main extends Application {
     Label scoreLabel;
     Label winnerLabel;
     
-    Label highscorelist;
+    ScoreList highscorelist;
+    Label highscorelabel;
 
     @Override
     public void init() throws Exception {
-        highscorelist = new Label();
-        highscorelist.setText("Highscores: \n");
+        highscorelist = new ScoreList();
+        highscorelabel = new Label();
         
         Files.lines(Paths.get("highscore.txt")).forEach(row -> {
         String[] pieces = row.split(";");
-            highscorelist.setText(highscorelist.getText() + "\n" + pieces[0] + " " + pieces[1]);
+            Score highscore = new Score();
+            int scoreInt = Integer.parseInt(pieces[1]);
+            highscore.setScore(scoreInt);
+            highscore.setUsername(pieces[0]);
+            
+            highscorelabel.setText(highscorelabel.getText() + "\n" + pieces[0] + " " + pieces[1]);
+            
         });
     }
     
@@ -101,6 +109,20 @@ public class Main extends Application {
         
         Scene multiPlayerInstructions = new Scene(multiPlayerVBox);
         
+        // single player ask username
+        VBox usernameVBox = new VBox();
+        
+        Label usernameLabel = new Label("Select your username.");
+        TextField enterUsername = new TextField();
+        Button start1final = new Button("Start");
+        Button back1final = new Button("Back");
+        
+        usernameVBox.getChildren().add(usernameLabel);
+        usernameVBox.getChildren().add(enterUsername);
+        usernameVBox.getChildren().add(start1final);
+        
+        Scene selectUsernameScene = new Scene(usernameVBox);
+        
         // single player end
         VBox singlePlayerEndVBox = new VBox();
         
@@ -108,10 +130,14 @@ public class Main extends Application {
         
         HBox singlePlayerEndHBox = new HBox();
         singlePlayerEndHBox.setSpacing(40);
+        
         Button back1end = new Button("Back");
         Button start1end = new Button("Play Again");
+        Button highscoresButtonEnd = new Button("Highscores");
+        
         singlePlayerEndHBox.getChildren().add(back1end);
         singlePlayerEndHBox.getChildren().add(start1end);
+        singlePlayerEndHBox.getChildren().add(highscoresButtonEnd);
         
         singlePlayerEndVBox.getChildren().add(scoreLabel);
         singlePlayerEndVBox.getChildren().add(singlePlayerEndHBox);
@@ -136,7 +162,13 @@ public class Main extends Application {
         Scene multiPlayerEnd = new Scene(multiPlayerEndVBox);
         
         //highscore view
-        Scene highscoreView = new Scene(highscorelist);
+        VBox highscoreVBox = new VBox();
+        highscoreVBox.getChildren().add(highscorelabel);
+        
+        Button backHS = new Button("Back");
+        highscoreVBox.getChildren().add(backHS);
+        
+        Scene highscoreView = new Scene(highscoreVBox);
         
         
         //creation of score
@@ -149,6 +181,10 @@ public class Main extends Application {
         
         multiPlayer.setOnAction((event) -> {
             stage.setScene(multiPlayerInstructions);
+        });
+        
+        back1final.setOnAction((event) -> {
+            stage.setScene(singlePlayerInstructions);
         });
         
         back1.setOnAction((event) -> {
@@ -168,15 +204,21 @@ public class Main extends Application {
         });
         
         start1.setOnAction((event) -> {
+            stage.setScene(selectUsernameScene);
+        });
+        
+        start1end.setOnAction((event) -> {
+            stage.setScene(selectUsernameScene);
+        });
+        
+        start1final.setOnAction((event) -> {
+            String username = enterUsername.getText();
+            score.setUsername(username);
             snake(stage, singlePlayerEnd, false);
         });
         
         start2.setOnAction((event) -> {
             snake(stage, multiPlayerEnd, true);
-        });
-        
-        start1end.setOnAction((event) -> {
-            snake(stage, singlePlayerEnd, false);
         });
         
         start2end.setOnAction((event) -> {
@@ -185,6 +227,14 @@ public class Main extends Application {
         
         highscoresButton.setOnAction(event -> {
             stage.setScene(highscoreView);
+        });
+        
+        highscoresButtonEnd.setOnAction(event -> {
+            stage.setScene(highscoreView);
+        });
+        
+        backHS.setOnAction(event -> {
+            stage.setScene(singlePlayerInstructions);
         });
         
         //start
