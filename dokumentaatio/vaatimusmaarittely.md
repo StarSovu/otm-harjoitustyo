@@ -4,7 +4,7 @@
 Sovellus on käärmepeli (matopeli), jossa voi pelata joko yksin enemmän perinteisen matopelin kaltaista peliä tai kaksin vastakkain.
 
 ## Käyttäjät
-Vain tavallisia käyttäjiä (yksi tai kaksi kerrallaan riippuen siitä pelaako yksin vai kaksin). Ei sisäänkirjautumista. Jossakin vaiheessa sovelluukseen kuitenkin saatetaan lisätä toiminnallisuus, jossa käyttäjä voi kirjoittaa nimen, joka näkyy top-listoilla.
+Vain tavallisia käyttäjiä (yksi tai kaksi kerrallaan riippuen siitä pelaako yksin vai kaksin).Yksinpelissä käyttäjä kirjoittaa nimen, joka näkyy top-listoilla.
 
 ## Perusversion tarjoama toiminnallisuus
 
@@ -20,6 +20,8 @@ Yksipeli
 - Joka kymmenes pisteen tienaus aihettaa sitruunan ilmestymisen.
 - Syömällä sitruunan tienataan kaksi pistettä ilman, että käärme kasvaa.
 - Tavoitteena saada mahdollisimman monta pistettä.
+- Kun peli käynnistetään, kysytään käyttäjänimeä.
+- Top-listoilla näkyy kymmenen parasta suoritusta (nimi ja pisteet).
 
 Kaksinpeli
 - Pelaaja 1 ja pelaaja 2 ohjaa kumpikin käärmettä.
@@ -29,6 +31,3 @@ Kaksinpeli
 - Jos molemmat pelaajat häviävät samanaikaisesti, peli loppuu tasan.
 
 ## Jatkokehitysideoita
-- Kirjanpito parhaista tuloksista ykspelissä, top-lista.
-- Mahdollisuus kirjautua sisään jollakin käyttäjänimellä ja pitää kirjaa henkilökohtaisista parhaista yksinpelin suorituksista.
-- Mahdollisuus kirjautua sisään jollakin kaksikon käyttäjänimellä ja pitää kirjaa siitä, kumpi käärme on voittanut kuinka monta kertaa kaksinpelissä.
