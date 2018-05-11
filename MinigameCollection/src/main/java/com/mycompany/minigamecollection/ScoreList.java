@@ -25,4 +25,15 @@ public class ScoreList {
         return this.scores;
     }
     
+    @Override
+    public String toString() {
+        String highscoretext = "Highscores:\n";
+        for (int i = 0; i < this.scores.size(); i++) {
+            Score score = this.scores.get(i);
+            highscoretext += "\n" + (i+1) + ". " + score.getUsername() + ": " + score.getScore();
+        }
+        
+        return highscoretext;
+    }
+    
 }

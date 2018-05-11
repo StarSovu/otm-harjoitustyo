@@ -9,10 +9,6 @@ public class Score implements Comparable {
         this.score = 0;
     }
     
-    public void resetScore() {
-        this.score = 0;
-    }
-    
     public void setScore(int score) {
         this.score = score;
     }

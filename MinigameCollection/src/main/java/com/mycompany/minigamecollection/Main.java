@@ -1,8 +1,12 @@
 
 package com.mycompany.minigamecollection;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -28,13 +32,12 @@ public class Main extends Application {
     Label scoreLabel;
     Label winnerLabel;
     
-    ScoreList highscorelist;
-    Label highscorelabel;
+    ScoreList highscoreList;
+    Label highscoreLabel;
 
     @Override
     public void init() throws Exception {
-        highscorelist = new ScoreList();
-        highscorelabel = new Label();
+        highscoreList = new ScoreList();
         
         Files.lines(Paths.get("highscore.txt")).forEach(row -> {
         String[] pieces = row.split(";");
@@ -42,9 +45,7 @@ public class Main extends Application {
             int scoreInt = Integer.parseInt(pieces[1]);
             highscore.setScore(scoreInt);
             highscore.setUsername(pieces[0]);
-            
-            highscorelabel.setText(highscorelabel.getText() + "\n" + pieces[0] + " " + pieces[1]);
-            
+            highscoreList.addScore(highscore);
         });
     }
     
@@ -168,7 +169,9 @@ public class Main extends Application {
         
         //highscore view
         VBox highscoreVBox = new VBox();
-        highscoreVBox.getChildren().add(highscorelabel);
+        
+        highscoreLabel = new Label(highscoreList.toString());
+        highscoreVBox.getChildren().add(highscoreLabel);
         
         Button backHS = new Button("Back");
         highscoreVBox.getChildren().add(backHS);
@@ -341,7 +344,20 @@ public class Main extends Application {
                         
                     } else {
                         scoreLabel.setText("Your score: " + score.getScore());
-                        score.resetScore();
+                        highscoreList.addScore(score);
+                        highscoreLabel.setText(highscoreList.toString());
+                        
+                        PrintWriter pw;
+                        try {
+                            pw = new PrintWriter("highscore.txt");
+                            highscoreList.getScores().forEach(o -> pw.println(o.getUsername() + ";" + o.getScore()));
+                            pw.flush();
+                            pw.close();
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        score = new Score();
                     }
                     stop();
                     stage.setScene(mainMenu);

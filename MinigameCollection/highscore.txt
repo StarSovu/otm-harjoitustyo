@@ -1,1 +1,10 @@
+Shadow;29
+meme;21
+Troll;14
+Sonic;10
+Tails;10
+knux;8
+lol;4
+Mario;2
+Eggman;2
 lll;1
