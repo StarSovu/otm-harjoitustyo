@@ -17,5 +17,5 @@
 | 29.4. | 0    | checkstylen aiheuttaman ongelman korjaus |
 | 3.5.  | 2    | highscore-listojen aloitus, koodin muokkausta |
 | 8.5.  | 1    | highscoren näkyminen, ei vielä päivity |
-| 11.5. | 3    | highscoren tallennus, vaatimusmäärittelun päivitys |
-| yht.  | 22   |
+| 11.5. | 4    | highscoren tallennus, vaatimusmäärittelun päivitys, jotain mahdollisesti turhaa tai haitallista lopetusta |
+| yht.  | 23   |
