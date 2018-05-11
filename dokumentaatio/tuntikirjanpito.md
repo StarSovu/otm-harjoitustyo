@@ -17,4 +17,5 @@
 | 29.4. | 0    | checkstylen aiheuttaman ongelman korjaus |
 | 3.5.  | 2    | highscore-listojen aloitus, koodin muokkausta |
 | 8.5.  | 1    | highscoren näkyminen, ei vielä päivity |
-| yht.  | 18   |
+| 11.5. | 2    | uusien highscoreen liittyvien luokkien luominen ja muokkaaminen |
+| yht.  | 21   |
