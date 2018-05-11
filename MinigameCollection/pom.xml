@@ -45,13 +45,18 @@
 		<groupId>org.jacoco</groupId>
 		<artifactId>jacoco-maven-plugin</artifactId>
 		<version>0.8.0</version>
+		<configuration>
+		  <excludes>
+		    <exclude>com/mycompany/minigamecollection/*</exclude>
+		  </excludes>
+		</configuration>
 		<executions>
-		<execution>
+		  <execution>
 		    <id>default-prepare-agent</id>
 		    <goals>
 			<goal>prepare-agent</goal>
 		    </goals>
-		</execution>
+		  </execution>
 		</executions>
 	      </plugin>  
 	      <plugin>

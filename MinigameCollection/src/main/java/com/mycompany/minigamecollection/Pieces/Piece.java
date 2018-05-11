@@ -1,5 +1,5 @@
 
-package com.mycompany.minigamecollection;
+package com.mycompany.minigamecollection.Pieces;
 
 
 public class Piece {

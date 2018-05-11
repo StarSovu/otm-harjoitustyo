@@ -1,6 +1,7 @@
 
 package com.mycompany.minigamecollection;
 
+import com.mycompany.minigamecollection.Score.Score;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -62,11 +63,30 @@ public class ScoreTest {
     }
     
     @Test
-    public void resetScoreSetsScoreTo0() {
+    public void setScoreTo0() {
         for (int i = 0; i < 10000; i++) {
             this.score.increaseScore();
         }
-        this.score.resetScore();
+        this.score.setScore(0);
         assertTrue(this.score.getScore() == 0);
+    }
+    
+    @Test
+    public void setScoreTo10() {
+        this.score.setScore(10);
+        assertTrue(this.score.getScore() == 10);
+    }
+    
+    @Test
+    public void addUsername() {
+        this.score.setUsername("user");
+        assertEquals(this.score.getUsername(), "user");
+    }
+    
+    @Test
+    public void comparing() {
+        Score score2 = new Score();
+        score2.increaseScore();
+        assertTrue(this.score.compareTo(score2) == 1);
     }
 }

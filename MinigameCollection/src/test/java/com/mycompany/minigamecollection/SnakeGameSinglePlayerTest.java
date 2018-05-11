@@ -1,5 +1,11 @@
 package com.mycompany.minigamecollection;
 
+import com.mycompany.minigamecollection.Others.SnakeGame;
+import com.mycompany.minigamecollection.Others.Direction;
+import com.mycompany.minigamecollection.Pieces.Fruit;
+import com.mycompany.minigamecollection.Pieces.Snake;
+import com.mycompany.minigamecollection.Pieces.Piece;
+import com.mycompany.minigamecollection.Score.Score;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

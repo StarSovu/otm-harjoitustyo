@@ -1,6 +1,8 @@
 
-package com.mycompany.minigamecollection;
+package com.mycompany.minigamecollection.Pieces;
 
+import com.mycompany.minigamecollection.Others.Direction;
+import com.mycompany.minigamecollection.Pieces.Piece;
 import java.util.ArrayList;
 import java.util.List;
 

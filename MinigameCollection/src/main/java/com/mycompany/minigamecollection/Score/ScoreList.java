@@ -1,6 +1,7 @@
 
-package com.mycompany.minigamecollection;
+package com.mycompany.minigamecollection.Score;
 
+import com.mycompany.minigamecollection.Score.Score;
 import java.util.ArrayList;
 import java.util.Collections;
 
