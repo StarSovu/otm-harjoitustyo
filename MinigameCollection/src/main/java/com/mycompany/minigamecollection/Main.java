@@ -26,12 +26,17 @@ public class Main extends Application {
     Score score;
     Label scoreLabel;
     Label winnerLabel;
+    
+    Label highscorelist;
 
     @Override
     public void init() throws Exception {
-        Files.lines(Paths.get("highscore.txt")).forEach(rivi -> {
-        String[] palat = rivi.split(";");
-            System.out.println(palat[0] + " " + palat[1]);
+        highscorelist = new Label();
+        highscorelist.setText("Highscores: \n");
+        
+        Files.lines(Paths.get("highscore.txt")).forEach(row -> {
+        String[] pieces = row.split(";");
+            highscorelist.setText(highscorelist.getText() + "\n" + pieces[0] + " " + pieces[1]);
         });
     }
     
@@ -68,11 +73,11 @@ public class Main extends Application {
         
         Button back1 = new Button("Back");
         Button start1 = new Button("Start");
-        Button highscores = new Button("Highscores");
+        Button highscoresButton = new Button("Highscores");
         
         singlePlayerHBox.getChildren().add(back1);
         singlePlayerHBox.getChildren().add(start1);
-        singlePlayerHBox.getChildren().add(highscores);
+        singlePlayerHBox.getChildren().add(highscoresButton);
         
         singlePlayerVBox.getChildren().add(singlePlayerLabel);
         singlePlayerVBox.getChildren().add(singlePlayerHBox);
@@ -114,7 +119,6 @@ public class Main extends Application {
         Scene singlePlayerEnd = new Scene(singlePlayerEndVBox);
 
         // multiplayer end
-        // single player end
         VBox multiPlayerEndVBox = new VBox();
         
         winnerLabel = new Label("Winner: ");
@@ -130,6 +134,9 @@ public class Main extends Application {
         multiPlayerEndVBox.getChildren().add(multiPlayerEndHBox);
         
         Scene multiPlayerEnd = new Scene(multiPlayerEndVBox);
+        
+        //highscore view
+        Scene highscoreView = new Scene(highscorelist);
         
         
         //creation of score
@@ -174,6 +181,10 @@ public class Main extends Application {
         
         start2end.setOnAction((event) -> {
             snake(stage, multiPlayerEnd, true);
+        });
+        
+        highscoresButton.setOnAction(event -> {
+            stage.setScene(highscoreView);
         });
         
         //start
